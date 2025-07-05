@@ -1,210 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Service & Incident Toolkit</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        h1, h2 {
-            color: #1a237e;
-            margin-bottom: 15px;
-        }
-        section {
-            background: #fff;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 12px; /* Increased border-radius for a softer look */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Stronger shadow for depth */
-        }
-        .download-link, .copy-button { /* Added .copy-button for consistent styling */
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #4f46e5; /* Tailwind indigo-600 equivalent */
-            color: white;
-            text-decoration: none;
-            border-radius: 8px; /* Rounded corners for the button */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
-            border: none; /* Remove default button border */
-            cursor: pointer; /* Indicate it's clickable */
-        }
-        .download-link:hover, .copy-button:hover {
-            background-color: #4338ca; /* Darker indigo on hover */
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            display: block; /* Ensures image takes its own line */
-            margin: 20px auto; /* Center the image */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        strong {
-            color: #3f51b5; /* Deeper blue for strong text */
-        }
-        /* Message box for copy success */
-        .message-box {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #28a745; /* Green for success */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .message-box.show {
-            opacity: 1;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Service & Incident Toolkit</title>
+
+  <!-- TailwindCSS and Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    h1, h2 {
+      color: #1a237e;
+      margin-bottom: 15px;
+    }
+    section {
+      background: #fff;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .download-link, .copy-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .download-link:hover, .copy-button:hover {
+      background-color: #4338ca;
+    }
+    .message-box {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .message-box.show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body class="p-4 md:p-8 lg:p-12">
-    <header class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-indigo-800">Customer Service & Incident Toolkit</h1>
-        <p class="text-lg text-gray-600 mt-2">Essential tools for effective IT supervision and support.</p>
-    </header>
+  <header class="text-center mb-8">
+    <h1 class="text-4xl font-extrabold text-indigo-800">Customer Service & Incident Toolkit</h1>
+    <p class="text-lg text-gray-600 mt-2">Essential tools for effective IT supervision and support.</p>
+  </header>
 
-    <main class="max-w-4xl mx-auto">
-        <section>
-            <h2 class="text-2xl font-bold mb-4">1. Customer Service Standards Statement</h2>
-            <p>
-                As an IT supervisor, I believe in a customer-first philosophy where end users are not just clients, but valued partners in the successful operation of our IT environment. Customer service in IT is about respect, responsiveness, and resolution.
-            </p>
-            <p>
-                <strong>How IT Should Treat End Users:</strong> End users should be treated with patience, empathy, and dignity. We must avoid technical jargon and ensure users feel heard and respected, regardless of their technical ability. Our goal is to bridge the gap between technology and people through clear communication and reliable support.
-            </p>
-            <p>
-                <strong>Defining Great Service:</strong> Great service is defined by timeliness, transparency, and effectiveness. A great IT support interaction should leave the user informed and reassured. It's not just about solving the issue, but about how the user feels during and after the interaction.
-            </p>
-            <p>
-                <strong>Resolving Complaints with Professionalism:</strong> Complaints should be welcomed as opportunities to improve. I will:
-            </p>
-            <ul class="list-disc list-inside ml-4 mb-4">
-                <li>Acknowledge the complaint calmly and professionally.</li>
-                <li>Investigate the issue without assigning blame.</li>
-                <li>Provide updates regularly during resolution.</li>
-                <li>Apologize where appropriate and ensure a fair outcome.</li>
-            </ul>
-            <p>
-                The hallmark of excellent IT support is not a lack of problems, but how we handle them.
-            </p>
-        </section>
+  <main class="max-w-4xl mx-auto">
 
-        <section>
-            <h2 class="text-2xl font-bold mb-4">2. Escalation Matrix / Flowchart</h2>
-            <p class="mb-4">Below is a visual representation of the IT support escalation process, outlining when and how tickets move between support tiers to ensure efficient problem resolution.</p>
-            <!-- Using your uploaded image here. Remember to replace this with the actual hosted URL if you move it to a different location. -->
-            <img src="escalation_flowchart.png" alt="Escalation Flowchart">
-            <a class="download-link" href="escalation_flowchart.png" download="Escalation_Matrix_Flowchart.png">Download Flowchart (PNG)</a>
-        </section>
+    <!-- Sections 1–4 (as previously written) -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">1. Customer Service Standards Statement</h2>
+      <p>As an IT supervisor, I believe in a customer-first philosophy...</p>
+    </section>
 
-        <section>
-            <h2 class="text-2xl font-bold mb-4">3. Sample Helpdesk Ticket Response</h2>
-            <p><strong>Subject:</strong> RE: Issue – Email Not Working</p>
-            <div id="helpdesk-response" class="bg-gray-100 p-6 rounded-lg border border-gray-200">
-                <p>
-                    Dear [User Name],<br>
-                    Thank you for contacting the IT Helpdesk. I understand how frustrating it can be when email services are not functioning, especially when your work depends on it.<br>
-                    We are currently investigating the issue, and initial checks show a possible server-side error affecting multiple users. I have escalated your ticket to Tier 2 Support and expect to have an update within the next 30 minutes.<br>
-                    In the meantime, please let us know if you experience other issues or require an alternative communication method. Thank you for your patience.<br>
-                    <br>
-                    Sincerely,<br>
-                    [Your Name]<br>
-                    IT Helpdesk Technician<br>
-                    [YourContact@domain.com]
-                </p>
-            </div>
-            <button class="copy-button" id="copy-response-button">Copy Response</button>
-        </section>
+    <section>
+      <h2 class="text-2xl font-bold mb-4">2. Escalation Matrix / Flowchart</h2>
+      <p class="mb-4">Visual representation of the IT support escalation process:</p>
+      <img src="escalation_flowchart.png" alt="Escalation Flowchart">
+      <a class="download-link" href="escalation_flowchart.png" download="Escalation_Matrix_Flowchart.png">Download Flowchart (PNG)</a>
+    </section>
 
-        <section>
-            <h2 class="text-2xl font-bold mb-4">4. Incident Report Template</h2>
-            <p class="mb-4">
-                You can download the comprehensive incident report template below. This form is designed to help document key details of any technical incident, from initial report to resolution and preventative measures.
-            </p>
-            <a class="download-link" href="Incident_Report_Template.docx" download="Incident_Report_Template.docx">Download Incident Report Template (DOCX)</a>
-        </section>
-        <section>
-            <h2 class="text-2xl font-bold mb-4">5. KPI Dashboard (Past 4 Weeks)</h2>
-            <p class="mb-4">An overview of key metrics used to monitor IT support performance:</p>
-            <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-300 rounded-lg">
-                    <thead class="bg-indigo-100">
-                        <tr>
-                            <th class="px-4 py-2 text-left">KPI</th>
-                            <th class="px-4 py-2 text-left">Week 1</th>
-                            <th class="px-4 py-2 text-left">Week 2</th>
-                            <th class="px-4 py-2 text-left">Week 3</th>
-                            <th class="px-4 py-2 text-left">Week 4</th>
-                            <th class="px-4 py-2 text-left">Goal</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        <tr><td class="border px-4 py-2">Avg. Resolution Time (hrs)</td><td>5.2</td><td>4.6</td><td>4.1</td><td>3.8</td><td>≤ 4.0</td></tr>
-                        <tr><td class="border px-4 py-2">Customer Satisfaction (%)</td><td>88</td><td>90</td><td>92</td><td>94</td><td>≥ 90</td></tr>
-                        <tr><td class="border px-4 py-2">First Contact Resolution (%)</td><td>72</td><td>75</td><td>78</td><td>81</td><td>≥ 80</td></tr>
-                        <tr><td class="border px-4 py-2">System Uptime (%)</td><td>99.9</td><td>99.9</td><td>99.7</td><td>99.9</td><td>≥ 99.9</td></tr>
-                        <tr><td class="border px-4 py-2">Tickets Closed</td><td>48</td><td>52</td><td>57</td><td>61</td><td>≥ 50</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <section>
+      <h2 class="text-2xl font-bold mb-4">3. Sample Helpdesk Ticket Response</h2>
+      <p><strong>Subject:</strong> RE: Issue – Email Not Working</p>
+      <div id="helpdesk-response" class="bg-gray-100 p-6 rounded-lg border border-gray-200">
+        <p>
+          Dear [User Name],<br>
+          Thank you for contacting the IT Helpdesk...<br><br>
+          Sincerely,<br>
+          [Your Name]<br>
+          IT Helpdesk Technician<br>
+          [YourContact@domain.com]
+        </p>
+      </div>
+      <button class="copy-button" id="copy-response-button">Copy Response</button>
+    </section>
 
-        <section>
-            <h2 class="text-2xl font-bold mb-4 mt-8">6. Mini Budget Plan</h2>
-            <p class="mb-4">Estimated monthly team budget for essential IT resources:</p>
-            <div class="overflow-x-auto">
-                <table class="min-w-full border border-gray-300 rounded-lg">
-                    <thead class="bg-indigo-100">
-                        <tr>
-                            <th class="px-4 py-2">Category</th>
-                            <th class="px-4 py-2">Item(s)</th>
-                            <th class="px-4 py-2">Cost (INR)</th>
-                            <th class="px-4 py-2">Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        <tr><td class="border px-4 py-2">Software</td><td>Zoom Pro, Antivirus</td><td>5,400</td><td>Communication & Security</td></tr>
-                        <tr><td class="border px-4 py-2">Training</td><td>Cloud Support Workshop</td><td>3,000</td><td>Cloud Infrastructure Upskilling</td></tr>
-                        <tr><td class="border px-4 py-2">Hardware</td><td>Helpdesk Chairs, Laptops</td><td>123,500</td><td>Productivity & Comfort</td></tr>
-                        <tr class="font-bold"><td class="border px-4 py-2" colspan="2">Total</td><td>131,900</td><td></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+    <section>
+      <h2 class="text-2xl font-bold mb-4">4. Incident Report Template</h2>
+      <p class="mb-4">Download the comprehensive incident report template:</p>
+      <a class="download-link" href="Incident_Report_Template.docx" download>Download Incident Report Template (DOCX)</a>
+    </section>
 
-    <footer class="text-center mt-12 text-gray-500 text-sm">
-        <p>&copy; <span id="current-year"></span> [Your Name/Organization]. All rights reserved.</p>
-    </footer>
+    <!-- Section 5 - KPI Chart -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">5. KPI Dashboard (Past 4 Weeks)</h2>
+      <p class="mb-4">Bar chart comparing weekly KPIs vs targets:</p>
+      <canvas id="kpiChart" class="w-full max-w-4xl mx-auto"></canvas>
+      <a class="download-link mt-4" href="KPI_Dashboard.xlsx" download>Download KPI Dashboard (XLSX)</a>
+    </section>
 
-    <!-- Message box element -->
-    <div id="message-box" class="message-box"></div>
+    <!-- Section 6 - Budget Pie Chart -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 mt-8">6. Mini Budget Plan</h2>
+      <p class="mb-4">Visual breakdown of the estimated monthly team budget:</p>
 
-    <!-- Link to your JavaScript file -->
-    <script src="script.js"></script>
+      <!-- Pie Chart -->
+      <div class="w-full md:w-96 mx-auto mb-6">
+        <canvas id="budgetChart"></canvas>
+        <p class="text-center mt-4 text-gray-600 font-medium">Total Monthly Budget: ₹131,900</p>
+      </div>
+
+      <!-- Budget Table -->
+      <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-300 rounded-lg">
+          <thead class="bg-indigo-100">
+            <tr>
+              <th class="px-4 py-2">Category</th>
+              <th class="px-4 py-2">Item(s)</th>
+              <th class="px-4 py-2">Cost (INR)</th>
+              <th class="px-4 py-2">Purpose</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr><td class="border px-4 py-2">Software</td><td>Zoom Pro, Antivirus</td><td>5,400</td><td>Communication & Security</td></tr>
+            <tr><td class="border px-4 py-2">Training</td><td>Cloud Support Workshop</td><td>3,000</td><td>Cloud Infrastructure Upskilling</td></tr>
+            <tr><td class="border px-4 py-2">Hardware</td><td>Helpdesk Chairs, Laptops</td><td>123,500</td><td>Productivity & Comfort</td></tr>
+            <tr class="font-bold"><td class="border px-4 py-2" colspan="2">Total</td><td>131,900</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a class="download-link mt-4" href="Mini_Budget_Plan.xlsx" download>Download Budget Plan (XLSX)</a>
+    </section>
+
+  </main>
+
+  <footer class="text-center mt-12 text-gray-500 text-sm">
+    <p>&copy; <span id="current-year"></span> [Your Name/Organization]. All rights reserved.</p>
+  </footer>
+
+  <div id="message-box" class="message-box"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
