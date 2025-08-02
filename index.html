@@ -147,7 +147,10 @@
         </section>
         <section>
             <h2 class="text-2xl font-bold mb-4">5. KPI Dashboard (Past 4 Weeks)</h2>
-            <p class="mb-4">An overview of key metrics used to monitor IT support performance:</p>
+            <p class="mb-4">Bar chart comparing weekly KPIs vs targets:</p>
+            <canvas id="kpiChart" class="w-full max-w-4xl mx-auto"></canvas>
+            <a class="download-link mt-4" href="KPI_Dashboard.xlsx" download>Download KPI Dashboard (XLSX)</a>
+            
             <div class="overflow-x-auto">
                 <table class="min-w-full border border-gray-300 rounded-lg">
                     <thead class="bg-indigo-100">
@@ -174,6 +177,10 @@
         <section>
             <h2 class="text-2xl font-bold mb-4 mt-8">6. Mini Budget Plan</h2>
             <p class="mb-4">Estimated monthly team budget for essential IT resources:</p>
+            <div class="w-full md:w-96 mx-auto mb-6">
+              <canvas id="budgetChart"></canvas>
+              <p class="text-center mt-4 text-gray-600 font-medium">Total Monthly Budget: ₹131,900</p>
+            </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border border-gray-300 rounded-lg">
                     <thead class="bg-indigo-100">
